@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "803571204809",
+    "project_id": "drive-up-projects",
+    "storage_bucket": "drive-up-projects.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803571204809:android:48351a53032944ef3f4318",
+        "android_client_info": {
+          "package_name": "com.driveup.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803571204809-1k7l27lsilb1g47ropircqrlfje05ibo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG_DDaN4kSXGlslskemLMBBCxy8_-8e28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803571204809-1k7l27lsilb1g47ropircqrlfje05ibo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803571204809:android:a99e7b28bab222e83f4318",
+        "android_client_info": {
+          "package_name": "com.driveup.erp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803571204809-1k7l27lsilb1g47ropircqrlfje05ibo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG_DDaN4kSXGlslskemLMBBCxy8_-8e28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803571204809-1k7l27lsilb1g47ropircqrlfje05ibo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
