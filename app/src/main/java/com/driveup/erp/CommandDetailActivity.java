@@ -40,18 +40,18 @@ public class CommandDetailActivity extends AppCompatActivity {
         String key = "" + getIntent().getExtras().getString("command_id");
         Toast.makeText(this, key, Toast.LENGTH_SHORT).show();
 
-        //firebaseDatabase = FirebaseDatabase.getInstance();
-        //databaseReference = firebaseDatabase.getReference("commands").child(key).child("ligns_cmd");
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("commands").child(key).child("ligns_cmd");
 
-        //mRecycler = findViewById(R.id.recycler_view);
-        //mRecycler.setLayoutManager(new LinearLayoutManager(CommandDetailActivity.this));
-        //mRecycler.setHasFixedSize(true);
+        mRecycler = findViewById(R.id.recycler_view);
+        mRecycler.setLayoutManager(new LinearLayoutManager(CommandDetailActivity.this));
+        mRecycler.setHasFixedSize(true);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        /*
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -71,6 +71,6 @@ public class CommandDetailActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
-        });*/
+        });
     }
 }
