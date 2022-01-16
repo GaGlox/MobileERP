@@ -1,6 +1,7 @@
 package com.driveup.erp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -11,11 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.driveup.erp.CommandDetailActivity;
 import com.driveup.erp.R;
 import com.driveup.erp.model.Command;
+import com.driveup.erp.model.LigneCommand;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -23,6 +27,12 @@ import java.util.Locale;
 public class CommandAdapter extends RecyclerView.Adapter<CommandAdapter.CommandViewHolder> {
     private Context mContext;
     private List<Command> mData;
+
+    String code;
+    String customer;
+    String deliveryDate;
+    String status;
+    String orderDate;
 
     public CommandAdapter(Context mContext, List<Command> mData){
         this.mContext = mContext;
@@ -39,17 +49,38 @@ public class CommandAdapter extends RecyclerView.Adapter<CommandAdapter.CommandV
     @Override
     public void onBindViewHolder(@NonNull CommandViewHolder holder, int position) {
         // Retrieve data
-        holder.code_content.setText(": " + mData.get(position).getCode_cmd());
-        holder.customer_content.setText(": " + mData.get(position).getCustomer_cmd());
-        holder.delivery_content.setText(": " + mData.get(position).getDelivery_dt_cmd());
-        holder.status_content.setText(": " + mData.get(position).getStatus_cmd());
-        holder.order_content.setText(": " + mData.get(position).getOrder_dt_cmd());
+        code = mData.get(position).getCode_cmd();
+        customer = mData.get(position).getCustomer_cmd();
+        deliveryDate = timestampToString((long)mData.get(position).getDelivery_dt_cmd(), true);
+        status = mData.get(position).getStatus_cmd();
+        orderDate = timestampToString((long)mData.get(position).getOrder_dt_cmd(), true);
+
+        holder.code_content.setText(code);
+        holder.customer_content.setText(customer);
+        holder.delivery_content.setText(deliveryDate);
+        holder.status_content.setText(status);
+        holder.order_content.setText(orderDate);
 
         if (mData.get(position).getStatus_cmd().equals("Non payé")){
             holder.status_content.setTextColor(Color.RED);
         } else {
             holder.status_content.setTextColor(Color.GREEN);
         }
+
+        holder.arraw_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detailIntent = new Intent(mContext, CommandDetailActivity.class);
+                detailIntent.putExtra("code", code);
+                detailIntent.putExtra("customer", customer);
+                detailIntent.putExtra("delivery", deliveryDate);
+                detailIntent.putExtra("status", status);
+                // Toast.makeText(mContext, "" + mData.get(position).getPostkey(), Toast.LENGTH_SHORT).show();
+                detailIntent.putExtra("order", orderDate);
+
+                mContext.startActivity(detailIntent);
+            }
+        });
 
     }
 
@@ -58,13 +89,14 @@ public class CommandAdapter extends RecyclerView.Adapter<CommandAdapter.CommandV
         return mData.size();
     }
 
-    public class CommandViewHolder extends RecyclerView.ViewHolder {
+    public static class CommandViewHolder extends RecyclerView.ViewHolder {
         // Call widget from here
         TextView code_content;
         TextView customer_content;
         TextView delivery_content;
         TextView order_content;
         TextView status_content;
+        TextView arraw_next;
 
         public CommandViewHolder(View itemView) {
             super(itemView);
@@ -74,6 +106,8 @@ public class CommandAdapter extends RecyclerView.Adapter<CommandAdapter.CommandV
             delivery_content = (TextView) itemView.findViewById(R.id.cmd_delivery_content);
             order_content = (TextView) itemView.findViewById(R.id.cmd_order_date);
             status_content = (TextView) itemView.findViewById(R.id.cmd_status_content);
+            arraw_next = (TextView) itemView.findViewById(R.id.arrow_next);
+
         }
     }
 
@@ -82,6 +116,14 @@ public class CommandAdapter extends RecyclerView.Adapter<CommandAdapter.CommandV
         calendar.setTimeInMillis(time);
         String date = DateFormat.format("dd-MM-yyyy", calendar).toString();
         String hour = DateFormat.format("hh:mm", calendar).toString();
-        return date + " à " + hour;
+        return date ;//+ " à " + hour;
+    }
+
+    private String timestampToString(long time, boolean ans) {
+        Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
+        calendar.setTimeInMillis(time);
+        String date = DateFormat.format("dd/MM/yyyy", calendar).toString();
+        String hour = DateFormat.format("hh:mm", calendar).toString();
+        return date ;//+ " à " + hour;
     }
 }
