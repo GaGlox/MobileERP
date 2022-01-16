@@ -43,6 +43,8 @@ public class DashboardFragment extends Fragment {
     List<Command> commandList;
     CommandAdapter commandAdapter;
 
+    public static List<String> keys;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -96,8 +98,6 @@ public class DashboardFragment extends Fragment {
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setHasFixedSize(true);
 
-
-
         return rootView;
     }
 
@@ -109,9 +109,12 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 commandList = new ArrayList<>();
+                keys = new ArrayList<>();
                 for (DataSnapshot commandSnap: snapshot.getChildren()){
+                    String key = commandSnap.getRef().getKey();
                     Command command = commandSnap.getValue(Command.class);
                     commandList.add(command);
+                    keys.add(key);
                 }
 
                 //List<Command> mList = new ArrayList<>();

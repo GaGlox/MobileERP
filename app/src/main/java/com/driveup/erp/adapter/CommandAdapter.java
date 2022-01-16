@@ -16,6 +16,7 @@ import com.driveup.erp.CommandDetailActivity;
 import com.driveup.erp.R;
 import com.driveup.erp.model.Command;
 import com.driveup.erp.model.LigneCommand;
+import com.driveup.erp.ui.dashboard.DashboardFragment;
 
 import org.w3c.dom.Text;
 
@@ -77,7 +78,8 @@ public class CommandAdapter extends RecyclerView.Adapter<CommandAdapter.CommandV
                 detailIntent.putExtra("status", status);
                 // Toast.makeText(mContext, "" + mData.get(position).getPostkey(), Toast.LENGTH_SHORT).show();
                 detailIntent.putExtra("order", orderDate);
-
+                String the_key = DashboardFragment.keys.get(position);
+                detailIntent.putExtra("command_id", the_key);
                 mContext.startActivity(detailIntent);
             }
         });
