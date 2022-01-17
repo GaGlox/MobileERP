@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +31,8 @@ public class CommandDetailActivity extends AppCompatActivity {
     List<LignCommand> commandLignList;
     LignCommandAdapter commandLignAdapter;
 
-    private String code, customer, order, delivery, status;
-    private TextView code_cmd, customer_cmd, order_cmd, delivery_cmd, status_cmd;
+    private String code, customer, order, delivery, status, total;
+    private TextView code_cmd, customer_cmd, order_cmd, delivery_cmd, status_cmd, total_cost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class CommandDetailActivity extends AppCompatActivity {
         order_cmd = findViewById(R.id.order_date);
         delivery_cmd = findViewById(R.id.delivery_content);
         status_cmd = findViewById(R.id.status_content);
+        total_cost = findViewById(R.id.total_bill_content);
 
         // Remplissage par des valeurs
         code_cmd.setText(code);
@@ -66,6 +69,14 @@ public class CommandDetailActivity extends AppCompatActivity {
         mRecycler = findViewById(R.id.recycler_view_lign);
         mRecycler.setLayoutManager(new LinearLayoutManager(CommandDetailActivity.this));
         mRecycler.setHasFixedSize(true);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(CommandDetailActivity.this, total, Toast.LENGTH_SHORT).show();
+                total_cost.setText(total);
+            }
+        }, 5000);
     }
 
     @Override
@@ -76,11 +87,15 @@ public class CommandDetailActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 commandLignList = new ArrayList<>();
+                int pt_total = 0;
                 for (DataSnapshot commandSnap: snapshot.getChildren()){
                     LignCommand lignCommand = commandSnap.getValue(LignCommand.class);
+                    pt_total = pt_total + lignCommand.getTotal_price_cmd();
                     commandLignList.add(lignCommand);
                 }
 
+                total = "" + pt_total + " FC";
+                //Toast.makeText(CommandDetailActivity.this, total, Toast.LENGTH_SHORT).show();
                 //List<Command> mList = new ArrayList<>();
                 //Collections.reverse(commandLignList);
 

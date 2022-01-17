@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:paddingBottom="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,32 +146,25 @@
         android:id="@+id/total_bill_label"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:layout_width="wrap_content"
         android:text="Total à payer"
-        app:layout_constraintEnd_toStartOf="@id/total_bill_colon"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/order_date"/>
-
-    <TextView
-        android:id="@+id/total_bill_colon"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:text=": "
-        app:layout_constraintEnd_toStartOf="@id/total_bill_content"
-        app:layout_constraintTop_toBottomOf="@id/order_date" />
 
 
     <TextView
         android:id="@+id/total_bill_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:layout_width="wrap_content"
-        android:text="50.000 Fc"
+        android:text="- Fc"
+        android:textSize="13sp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/order_date" />
+        app:layout_constraintTop_toBottomOf="@id/total_bill_label" />
 
     <TextView
         android:gravity="top"
@@ -196,39 +189,51 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="1dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="1dp">
+                android:layout_weight="1"
+                android:paddingStart="2dp"
+                android:text="N°" />
 
-                <TextView
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="N°" />
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:paddingStart="2dp"
+                android:text="Libellés" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:text="Libellés" />
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingEnd="2dp"
+                android:text="Qté" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="Quantité" />
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingEnd="2dp"
+                android:text="PU" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:text="Coût total" />
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:text="PT" />
 
-            </LinearLayout>
+        </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"

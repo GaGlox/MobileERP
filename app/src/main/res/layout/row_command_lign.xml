@@ -11,29 +11,46 @@
         android:layout_width="10dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="N°" />
+        android:paddingStart="2dp"
+        android:text="N°"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/detail_cmd"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:text="Libellés" />
+        android:paddingStart="2dp"
+        android:text="Libellés"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/quantity_cmd"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_horizontal"
-        android:text="Quantité" />
+        android:paddingEnd="2dp"
+        android:text="Qté"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/unit_price_cmd"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingEnd="2dp"
+        android:layout_weight="1"
+        android:text="PU"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/total_price_cmd"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:layout_weight="1"
-        android:text="Coût total" />
+        android:text="PT"
+        android:textSize="12sp" />
 
 </LinearLayout>
