@@ -103,7 +103,7 @@
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/cmd_delivery_content"
+                android:id="@+id/delivery_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20/01/2022"
@@ -133,7 +133,7 @@
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/cmd_status_content"
+                android:id="@+id/status_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Non livré"
@@ -155,16 +155,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/command_panel"/>
 
-    <TextView
-        android:id="@+id/arrow_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/ic_next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
     <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -175,10 +165,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp">
+                android:orientation="horizontal"
+                android:layout_marginVertical="1dp">
 
                 <TextView
                     android:layout_width="10dp"
@@ -206,7 +197,7 @@
                     android:layout_weight="1"
                     android:text="Coût total" />
 
-            </TableRow>
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"

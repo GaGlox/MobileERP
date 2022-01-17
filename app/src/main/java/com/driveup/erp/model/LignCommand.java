@@ -1,14 +1,14 @@
 package com.driveup.erp.model;
 
-public class LigneCommand {
+public class LignCommand {
     private int id_lign_cmd;
     private String product_cmd;
     private int quantity_cmd;
     private int total_price_cmd;
 
-    public LigneCommand(){}
+    public LignCommand(){}
 
-    public LigneCommand(int id_lign_cmd, String product_cmd, int quantity_cmd, int total_price_cmd) {
+    public LignCommand(int id_lign_cmd, String product_cmd, int quantity_cmd, int total_price_cmd) {
         this.id_lign_cmd = id_lign_cmd;
         this.product_cmd = product_cmd;
         this.quantity_cmd = quantity_cmd;

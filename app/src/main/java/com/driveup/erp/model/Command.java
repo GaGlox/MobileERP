@@ -9,26 +9,26 @@ public class Command {
     private String status_cmd;
     private Object delivery_dt_cmd;
     private Object order_dt_cmd;
-    private LigneCommand ligneCommand;
+    private LignCommand lignCommand;
 
     public Command(){}
 
-    public Command(String code_cmd, String customer_cmd, String status_cmd, LigneCommand ligneCommand) {
+    public Command(String code_cmd, String customer_cmd, String status_cmd, LignCommand lignCommand) {
         this.code_cmd = code_cmd;
         this.customer_cmd = customer_cmd;
         this.status_cmd = status_cmd;
         this.delivery_dt_cmd = ServerValue.TIMESTAMP;
         this.order_dt_cmd = ServerValue.TIMESTAMP;
-        this.ligneCommand = ligneCommand;
+        this.lignCommand = lignCommand;
     }
 
-    public Command(String code_cmd, String customer_cmd, String status_cmd, Object delivery_dt_cmd, Object order_dt_cmd, LigneCommand ligneCommand) {
+    public Command(String code_cmd, String customer_cmd, String status_cmd, Object delivery_dt_cmd, Object order_dt_cmd, LignCommand lignCommand) {
         this.code_cmd = code_cmd;
         this.customer_cmd = customer_cmd;
         this.status_cmd = status_cmd;
         this.delivery_dt_cmd = delivery_dt_cmd;
         this.order_dt_cmd = order_dt_cmd;
-        this.ligneCommand = ligneCommand;
+        this.lignCommand = lignCommand;
     }
 
     public String getCode_cmd() {
@@ -71,11 +71,11 @@ public class Command {
         this.order_dt_cmd = order_dt_cmd;
     }
 
-    public LigneCommand getLigneCommand() {
-        return ligneCommand;
+    public LignCommand getLignCommand() {
+        return lignCommand;
     }
 
-    public void setLigneCommand(LigneCommand ligneCommand) {
-        this.ligneCommand = ligneCommand;
+    public void setLignCommand(LignCommand lignCommand) {
+        this.lignCommand = lignCommand;
     }
 }

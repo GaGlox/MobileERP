@@ -1,9 +1,6 @@
 package com.driveup.erp.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,38 +9,34 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.driveup.erp.CommandDetailActivity;
 import com.driveup.erp.R;
-import com.driveup.erp.model.Command;
-import com.driveup.erp.model.LigneCommand;
+import com.driveup.erp.model.LignCommand;
 
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
-public class LigneCommandAdapter extends RecyclerView.Adapter<LigneCommandAdapter.CommandViewHolder> {
+public class LignCommandAdapter extends RecyclerView.Adapter<LignCommandAdapter.CommandViewHolder> {
     private Context mContext;
-    private List<LigneCommand> mData;
+    private List<LignCommand> mData;
 
     String id_lign;
     String detail;
     String quantity;
     String total_price;
 
-    public LigneCommandAdapter(Context mContext, List<LigneCommand> mData){
+    public LignCommandAdapter(Context mContext, List<LignCommand> mData){
         this.mContext = mContext;
         this.mData = mData;
     }
 
     @NonNull
     @Override
-    public LigneCommandAdapter.CommandViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LignCommandAdapter.CommandViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View row = LayoutInflater.from(mContext).inflate(R.layout.row_command_lign, parent, false);
-        return new LigneCommandAdapter.CommandViewHolder(row);
+        return new LignCommandAdapter.CommandViewHolder(row);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LigneCommandAdapter.CommandViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LignCommandAdapter.CommandViewHolder holder, int position) {
         // Retrieve data
         id_lign = "" + mData.get(position).getId_lign_cmd();
         detail = mData.get(position).getProduct_cmd();

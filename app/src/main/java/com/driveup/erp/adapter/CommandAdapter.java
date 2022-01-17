@@ -15,12 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.driveup.erp.CommandDetailActivity;
 import com.driveup.erp.R;
 import com.driveup.erp.model.Command;
-import com.driveup.erp.model.LigneCommand;
 import com.driveup.erp.ui.dashboard.DashboardFragment;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
