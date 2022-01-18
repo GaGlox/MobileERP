@@ -128,24 +128,30 @@ public class CommandDetailActivity extends AppCompatActivity {
         btn_printPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*new AlertDialog.Builder(CommandDetailActivity.this)
+                new AlertDialog.Builder(CommandDetailActivity.this)
                         .setTitle("")
                         .setMessage("Voulez-vous imprimer ?")
                         .setNegativeButton(R.string.confirm_no, null)
                         .setPositiveButton(R.string.confirm_yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                if (checkSelfPermission(
+                                     Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                     requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                            Manifest.permission.READ_EXTERNAL_STORAGE},1);
+                                }
 
+                                printPDF(customer, code, order, delivery, status, total);
                             }
                         }).create().show();
-                */
-                if (checkSelfPermission(
+
+                /*if (checkSelfPermission(
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.READ_EXTERNAL_STORAGE},1);
                 }
 
-                printPDF(customer, code, order, delivery, status, total);
+                printPDF(customer, code, order, delivery, status, total);*/
             }
         });
 
@@ -246,6 +252,62 @@ public class CommandDetailActivity extends AppCompatActivity {
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(Color.rgb(0,0,0));
         canvas.drawText(total,100, 105, mPaint);
+
+        // Title of the table
+        mPaint.setTextSize(7.0f);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.rgb(0,0,0));
+        canvas.drawText("N°",10, 120, mPaint);
+
+        mPaint.setTextSize(7.0f);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.rgb(0,0,0));
+        canvas.drawText("Libellés",20, 120, mPaint);
+
+        mPaint.setTextSize(7.0f);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.rgb(0,0,0));
+        canvas.drawText("Qté",110, 120, mPaint);
+
+        mPaint.setTextSize(7.0f);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.rgb(0,0,0));
+        canvas.drawText("PU",145, 120, mPaint);
+
+        mPaint.setTextSize(7.0f);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.rgb(0,0,0));
+        canvas.drawText("PT",175, 120, mPaint);
+
+        int lignSpace = 10;
+        for (LignCommand lignCommand : commandLignList){
+            mPaint.setTextSize(7.0f);
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(Color.rgb(0,0,0));
+            canvas.drawText("" + lignCommand.getId_lign_cmd(),10, 120 + lignSpace, mPaint);
+
+            mPaint.setTextSize(7.0f);
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(Color.rgb(0,0,0));
+            canvas.drawText(lignCommand.getProduct_cmd(),20, 120  + lignSpace, mPaint);
+
+            mPaint.setTextSize(7.0f);
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(Color.rgb(0,0,0));
+            canvas.drawText("" + lignCommand.getQuantity_cmd(),110, 120  + lignSpace, mPaint);
+
+            mPaint.setTextSize(7.0f);
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(Color.rgb(0,0,0));
+            canvas.drawText("PU",145, 120 + lignSpace, mPaint);
+
+            mPaint.setTextSize(7.0f);
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(Color.rgb(0,0,0));
+            canvas.drawText("" + lignCommand.getTotal_price_cmd(),175, 120 + lignSpace, mPaint);
+
+            lignSpace = lignSpace + 10;
+        }
 
         mPdfDocument.finishPage(mPage);
 
