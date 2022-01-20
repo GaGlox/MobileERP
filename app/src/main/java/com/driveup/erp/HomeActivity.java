@@ -1,6 +1,7 @@
 package com.driveup.erp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -110,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
                         //setMyFragment(fragment);
                         break;
                     case R.id.nav_about:
-                        //startActivity(new Intent(HomeActivity.this, AboutActivity.class));
+                        startActivity(new Intent(HomeActivity.this, AboutActivity.class));
                         break;
                     /*case R.id.nav_share:
                         Intent intent = new Intent(Intent.ACTION_SEND);
