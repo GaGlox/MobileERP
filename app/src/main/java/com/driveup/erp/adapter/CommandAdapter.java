@@ -17,7 +17,9 @@ import com.driveup.erp.R;
 import com.driveup.erp.model.Command;
 import com.driveup.erp.ui.dashboard.DashboardFragment;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,9 +50,9 @@ public class CommandAdapter extends RecyclerView.Adapter<CommandAdapter.CommandV
         // Retrieve data
         code = mData.get(position).getCode_cmd();
         customer = mData.get(position).getCustomer_cmd();
-        deliveryDate = timestampToString((long)mData.get(position).getDelivery_dt_cmd(), true);
+        deliveryDate = timestampToString(mData.get(position).getDelivery_dt_cmd());
         status = mData.get(position).getStatus_cmd();
-        orderDate = timestampToString((long)mData.get(position).getOrder_dt_cmd(), true);
+        orderDate = timestampToString(mData.get(position).getOrder_dt_cmd());
 
         holder.code_content.setText(code);
         holder.customer_content.setText(customer);
@@ -112,16 +114,7 @@ public class CommandAdapter extends RecyclerView.Adapter<CommandAdapter.CommandV
     private String timestampToString(long time) {
         Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
         calendar.setTimeInMillis(time);
-        String date = DateFormat.format("dd-MM-yyyy", calendar).toString();
-        String hour = DateFormat.format("hh:mm", calendar).toString();
-        return date ;//+ " à " + hour;
-    }
-
-    private String timestampToString(long time, boolean ans) {
-        Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
-        calendar.setTimeInMillis(time);
-        String date = DateFormat.format("dd/MM/yyyy", calendar).toString();
-        String hour = DateFormat.format("hh:mm", calendar).toString();
-        return date ;//+ " à " + hour;
+        String date = DateFormat.format("dd/MM",calendar).toString();
+        return date;
     }
 }

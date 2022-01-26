@@ -86,7 +86,7 @@ public class CommandDetailActivity extends AppCompatActivity {
         }
 
         String key = getIntent().getExtras().getString("command_id");
-        Toast.makeText(this, key, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, key, Toast.LENGTH_SHORT).show();
 
         code = getIntent().getExtras().getString("code");
         customer = getIntent().getExtras().getString("customer");
@@ -145,13 +145,6 @@ public class CommandDetailActivity extends AppCompatActivity {
                             }
                         }).create().show();
 
-                /*if (checkSelfPermission(
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.READ_EXTERNAL_STORAGE},1);
-                }
-
-                printPDF(customer, code, order, delivery, status, total);*/
             }
         });
 

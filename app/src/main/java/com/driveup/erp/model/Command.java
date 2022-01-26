@@ -7,8 +7,8 @@ public class Command {
     private String code_cmd;
     private String customer_cmd;
     private String status_cmd;
-    private Object delivery_dt_cmd;
-    private Object order_dt_cmd;
+    private long delivery_dt_cmd;
+    private long order_dt_cmd;
     private LignCommand lignCommand;
 
     public Command(){}
@@ -17,12 +17,12 @@ public class Command {
         this.code_cmd = code_cmd;
         this.customer_cmd = customer_cmd;
         this.status_cmd = status_cmd;
-        this.delivery_dt_cmd = ServerValue.TIMESTAMP;
-        this.order_dt_cmd = ServerValue.TIMESTAMP;
+        //this.delivery_dt_cmd = ServerValue.TIMESTAMP;
+        //this.order_dt_cmd = ServerValue.TIMESTAMP;
         this.lignCommand = lignCommand;
     }
 
-    public Command(String code_cmd, String customer_cmd, String status_cmd, Object delivery_dt_cmd, Object order_dt_cmd, LignCommand lignCommand) {
+    public Command(String code_cmd, String customer_cmd, String status_cmd, long delivery_dt_cmd, long order_dt_cmd, LignCommand lignCommand) {
         this.code_cmd = code_cmd;
         this.customer_cmd = customer_cmd;
         this.status_cmd = status_cmd;
@@ -55,19 +55,19 @@ public class Command {
         this.status_cmd = status_cmd;
     }
 
-    public Object getDelivery_dt_cmd() {
+    public long getDelivery_dt_cmd() {
         return delivery_dt_cmd;
     }
 
-    public void setDelivery_dt_cmd(Object delivery_dt_cmd) {
+    public void setDelivery_dt_cmd(long delivery_dt_cmd) {
         this.delivery_dt_cmd = delivery_dt_cmd;
     }
 
-    public Object getOrder_dt_cmd() {
+    public long getOrder_dt_cmd() {
         return order_dt_cmd;
     }
 
-    public void setOrder_dt_cmd(Object order_dt_cmd) {
+    public void setOrder_dt_cmd(long order_dt_cmd) {
         this.order_dt_cmd = order_dt_cmd;
     }
 

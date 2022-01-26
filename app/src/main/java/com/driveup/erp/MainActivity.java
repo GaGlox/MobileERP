@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                //intent.putExtra("name", "MONKAMBULA ANNE");
-                //intent.putExtra("role", "Chef de projet");
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                intent.putExtra("name", "MONKAMBULA ANNE");
+                intent.putExtra("role", "Chef de projet");
                 startActivity(intent);
                 finish();
             }

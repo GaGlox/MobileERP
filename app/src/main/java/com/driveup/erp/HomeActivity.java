@@ -46,12 +46,29 @@ public class HomeActivity extends AppCompatActivity {
     private TextView username, user_role;
     public static HomeActivity HomeContextActivity;
 
+    private DatabaseReference mDatabase;
+    private RecyclerView mRecycler;
+    private DatabaseReference databaseReference, databaseReference2, databaseReference3, databaseReference4, databaseReference5;
+    List<Command> commandList;
+    CommandAdapter commandAdapter;
+    public static List<String> keys;
+
+    static public String message;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("commands");
+        databaseReference2 = firebaseDatabase.getReference("agents");
+        databaseReference3 = firebaseDatabase.getReference("customers");
+        databaseReference4 = firebaseDatabase.getReference("furnitures");
+        databaseReference5 = firebaseDatabase.getReference("products");
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +95,8 @@ public class HomeActivity extends AppCompatActivity {
 
         username.setText(nom);
         user_role.setText(role);
+
+        message = "Hello fragment";
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

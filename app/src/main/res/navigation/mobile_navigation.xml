@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_command"
-        android:name="com.driveup.erp.ui.gallery.GalleryFragment"
+        android:name="com.driveup.erp.ui.command.CommandFragment"
         android:label="@string/menu_command"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_command" />
 
     <fragment
         android:id="@+id/nav_provisioning"
-        android:name="com.driveup.erp.ui.slideshow.SlideshowFragment"
+        android:name="com.driveup.erp.ui.provisioning.ProvisioningFragment"
         android:label="@string/menu_provisioning"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_provisioning" />
 </navigation>

@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent); // On lance l'interface Accueil grâce à l'intention préparée
                     finish();
 
-
                 }else{
                     Toast.makeText(LoginActivity.this, "Nom d\'utilisateur ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
                 }
