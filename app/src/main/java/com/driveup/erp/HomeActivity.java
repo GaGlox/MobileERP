@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import com.driveup.erp.adapter.CommandAdapter;
 import com.driveup.erp.model.Command;
+import com.driveup.erp.ui.command.CommandFragment;
 import com.driveup.erp.ui.dashboard.DashboardFragment;
+import com.driveup.erp.ui.provisioning.ProvisioningFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -110,14 +112,14 @@ public class HomeActivity extends AppCompatActivity {
                         setMyFragment(fragment);
                         break;
                     case R.id.nav_command:
-                        //fragment = new CommandFragment();
+                        fragment = new CommandFragment();
                         toolbar.setTitle("Commande");
-                        //setMyFragment(fragment);
+                        setMyFragment(fragment);
                         break;
                     case R.id.nav_provisioning:
-                        //fragment = new ProvisioningFragment();
+                        fragment = new ProvisioningFragment();
                         toolbar.setTitle("Approvisionnement");
-                        //setMyFragment(fragment);
+                        setMyFragment(fragment);
                         break;
                     case R.id.nav_production:
                         //fragment = new ProductionFragment();

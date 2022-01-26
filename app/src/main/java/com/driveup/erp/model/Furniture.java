@@ -4,8 +4,17 @@ public class Furniture {
     private String intitule_m;
     private String detail_m;
     private int stock_m;
+    private int buying_price_m;
 
     public Furniture(){}
+
+    public int getBuying_price_m() {
+        return buying_price_m;
+    }
+
+    public void setBuying_price_m(int buying_price_m) {
+        this.buying_price_m = buying_price_m;
+    }
 
     public String getIntitule_m() {
         return intitule_m;

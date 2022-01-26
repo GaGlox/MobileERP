@@ -27,17 +27,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class ProvisioningFragment extends Fragment {
-
-    private Activity mActivity;
-    private DatabaseReference mDatabase;
     private RecyclerView mRecycler;
     private DatabaseReference databaseReference;
 
     private int numberOFCurrentCommand = 0;
     List<Furniture> furnituresList;
     FurnitureAdapter furnituresAdapter;
-
-    public static List<String> keys;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,7 +89,6 @@ public class ProvisioningFragment extends Fragment {
         return rootView;
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
@@ -103,16 +97,14 @@ public class ProvisioningFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 furnituresList = new ArrayList<>();
-                keys = new ArrayList<>();
                 for (DataSnapshot snap: snapshot.getChildren()){
-                    String key = snap.getRef().getKey();
+                    //String key = snap.getRef().getKey();
                     Furniture furniture = snap.getValue(Furniture.class);
                     furnituresList.add(furniture);
-                    keys.add(key);
 
                 }
 
-                Collections.reverse(furnituresList);
+                //Collections.reverse(furnituresList);
 
                 furnituresAdapter = new FurnitureAdapter(getContext(), furnituresList);
                 mRecycler.setAdapter(furnituresAdapter);

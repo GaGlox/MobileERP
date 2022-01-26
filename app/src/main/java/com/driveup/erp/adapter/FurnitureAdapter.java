@@ -18,7 +18,7 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.Furn
     private Context mContext;
     private List<Furniture> mData;
 
-
+    String buying, stock, detail, intitule;
 
     public FurnitureAdapter(Context mContext, List<Furniture> mData){
         this.mContext = mContext;
@@ -36,6 +36,29 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.Furn
     @Override
     public void onBindViewHolder(@NonNull FurnitureAdapter.FurnitureViewHolder holder, int position) {
 
+        intitule = mData.get(position).getIntitule_m();
+        detail = mData.get(position).getDetail_m();
+        stock = "" + mData.get(position).getStock_m();
+        buying = "" + mData.get(position).getBuying_price_m() + " Fc";
+
+        holder.intitule_fntr.setText(intitule);
+        holder.detail_fntr.setText(detail);
+        holder.stock_fntr.setText(stock);
+        holder.buying_price_fntr.setText(buying);
+
+        holder.btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.btn_del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -45,12 +68,18 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.Furn
 
     public static class FurnitureViewHolder extends RecyclerView.ViewHolder {
         // Call widget from here
-        //TextView code_content;
+        TextView btn_del, btn_edit, buying_price_fntr, stock_fntr, detail_fntr, intitule_fntr;
 
         public FurnitureViewHolder(View itemView) {
             super(itemView);
 
-            //code_content = (TextView) itemView.findViewById(R.id.cmd_code_content);
+            btn_del = (TextView) itemView.findViewById(R.id.btn_del);
+            btn_edit = (TextView) itemView.findViewById(R.id.btn_edit);
+
+            buying_price_fntr = (TextView) itemView.findViewById(R.id.buying_price_fntr);
+            stock_fntr = (TextView) itemView.findViewById(R.id.stock_fntr);
+            detail_fntr = (TextView) itemView.findViewById(R.id.detail_fntr);
+            intitule_fntr = (TextView) itemView.findViewById(R.id.intitule_fntr);
 
         }
     }

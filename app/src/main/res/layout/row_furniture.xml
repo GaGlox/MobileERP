@@ -29,11 +29,20 @@
 
 
         <TextView
+            android:id="@+id/intitule_fntr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Planche de bois"
             android:textStyle="bold"
             android:textSize="16sp"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/detail_fntr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description du produit"
+            android:textSize="12sp"
             android:textColor="@android:color/white"/>
 
         <LinearLayout
@@ -46,15 +55,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="13sp"
                 android:text="Quantité :"/>
 
 
             <TextView
+                android:id="@+id/stock_fntr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="12"
                 android:textStyle="bold"
+                android:textSize="13sp"
                 android:textColor="@android:color/white"/>
 
 
@@ -62,14 +74,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:textSize="13sp"
                 android:text="Prix d\'achat : "/>
 
 
             <TextView
+                android:id="@+id/buying_price_fntr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12.000 Fc"
                 android:textStyle="bold"
+                android:textSize="13sp"
                 android:textColor="@android:color/white"/>
 
         </LinearLayout>
@@ -80,7 +95,7 @@
         android:id="@+id/btn_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/ic_edit"
         android:backgroundTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +106,7 @@
         android:id="@+id/btn_del"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/ic_del"
         android:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintBottom_toBottomOf="parent"
