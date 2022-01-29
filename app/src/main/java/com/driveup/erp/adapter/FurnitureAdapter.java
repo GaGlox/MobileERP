@@ -76,10 +76,10 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.Furn
             btn_del = (TextView) itemView.findViewById(R.id.btn_del);
             btn_edit = (TextView) itemView.findViewById(R.id.btn_edit);
 
-            buying_price_fntr = (TextView) itemView.findViewById(R.id.buying_price_fntr);
-            stock_fntr = (TextView) itemView.findViewById(R.id.stock_fntr);
-            detail_fntr = (TextView) itemView.findViewById(R.id.detail_fntr);
-            intitule_fntr = (TextView) itemView.findViewById(R.id.intitule_fntr);
+            buying_price_fntr = (TextView) itemView.findViewById(R.id.pu_pr);
+            stock_fntr = (TextView) itemView.findViewById(R.id.color_pr);
+            detail_fntr = (TextView) itemView.findViewById(R.id.format_pr);
+            intitule_fntr = (TextView) itemView.findViewById(R.id.intitule_pr);
 
         }
     }

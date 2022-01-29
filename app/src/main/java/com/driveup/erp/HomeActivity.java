@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import com.driveup.erp.adapter.CommandAdapter;
 import com.driveup.erp.model.Command;
+import com.driveup.erp.ui.catalog.CatalogFragment;
 import com.driveup.erp.ui.command.CommandFragment;
 import com.driveup.erp.ui.dashboard.DashboardFragment;
+import com.driveup.erp.ui.production.ProductionFragment;
 import com.driveup.erp.ui.provisioning.ProvisioningFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -43,93 +45,78 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
-    private NavigationView navigationView;
     public static FragmentManager fragmentManager;
-    private TextView username, user_role;
     public static HomeActivity HomeContextActivity;
-
-    private DatabaseReference mDatabase;
-    private RecyclerView mRecycler;
-    private DatabaseReference databaseReference, databaseReference2, databaseReference3, databaseReference4, databaseReference5;
-    List<Command> commandList;
-    CommandAdapter commandAdapter;
-    public static List<String> keys;
-
-    static public String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // On définit le contenu c-à-d on attache l'interface xml au code Java correspondante
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("commands");
-        databaseReference2 = firebaseDatabase.getReference("agents");
-        databaseReference3 = firebaseDatabase.getReference("customers");
-        databaseReference4 = firebaseDatabase.getReference("furnitures");
-        databaseReference5 = firebaseDatabase.getReference("products");
-
+        // Bouton Flottant qu'on appelle depuis l'interface (trouver l'élément à partir de son ID)
         FloatingActionButton fab = findViewById(R.id.fab);
+        // On programme un écouteur d'évènement quand on va cliquer sur le bouton
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Bienvenu sur Drive Up", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-
+        // On définit le menu de navigation tiroir ou flottant en l'appellant depuis l'interface grâce à son ID
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(HomeActivity.this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-
-        username = (TextView) headerView.findViewById(R.id.user_name);
-        user_role = (TextView) headerView.findViewById(R.id.user_role);
-
+        // On appelle les textView qui afficheront le nom et la position de l'utilisateur
+        TextView username = (TextView) headerView.findViewById(R.id.user_name);
+        TextView user_role = (TextView) headerView.findViewById(R.id.user_role);
+        // On récupère ce nom et role en fonction des coordonnées fournies par l'interface login après connexion
         String nom = getIntent().getStringExtra("name");
         String role = getIntent().getStringExtra("role");
-
+        // On affiche le nom et le rôle das les textView préparés
         username.setText(nom);
         user_role.setText(role);
-
-        message = "Hello fragment";
-
+        // On définit le reste du menu tiroire ou flottant en ajoutant des écouteurs pour quand l'utilisateur va cliquer sur
+        // un élément de ce menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment = null;
+                Fragment fragment = null; // On prépare en avance une variable Fragment qui contiendra une instance du fragment
+                                          // désiré quand on va cliquer
 
                 switch (item.getItemId()){
-                    case R.id.nav_dashboard:
+                    case R.id.nav_dashboard: // Quand on clique sur Table de bord
                         fragment = new DashboardFragment();
                         toolbar.setTitle("Tableau de board");
                         setMyFragment(fragment);
                         break;
-                    case R.id.nav_command:
+                    case R.id.nav_command: // Quand on clique sur Command
                         fragment = new CommandFragment();
                         toolbar.setTitle("Commande");
                         setMyFragment(fragment);
                         break;
-                    case R.id.nav_provisioning:
+                    case R.id.nav_provisioning: // Quand on clique sur Approvisionnement
                         fragment = new ProvisioningFragment();
                         toolbar.setTitle("Approvisionnement");
                         setMyFragment(fragment);
                         break;
-                    case R.id.nav_production:
-                        //fragment = new ProductionFragment();
+                    case R.id.nav_production: // Quand on clique sur Production
+                        fragment = new ProductionFragment();
                         toolbar.setTitle("Production");
-                        //setMyFragment(fragment);
+                        setMyFragment(fragment);
                         break;
-                    case R.id.nav_catalog:
-                        //fragment = new CatalogFragment();
+                    case R.id.nav_catalog: // Quand on clique sur catalogue
+                        fragment = new CatalogFragment();
                         toolbar.setTitle("Catalogue");
-                        //setMyFragment(fragment);
+                        setMyFragment(fragment);
                         break;
                     case R.id.nav_about:
                         startActivity(new Intent(HomeActivity.this, AboutActivity.class));
@@ -156,12 +143,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // Pour gérer le changement des fragments au clic, on utilise un gestionnaire
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_frame, new DashboardFragment()).commit();
 
         HomeActivity.HomeContextActivity = HomeActivity.this;
     }
 
+    // Méthode pour replacer un fragment par un autre au clic
     private void setMyFragment(Fragment fragment) {
         //get current fragment manager
         fragmentManager = getSupportFragmentManager();
@@ -179,9 +168,10 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.END)) {
+        // Quand on clique sur le bouton retour alors qu'on est sur l'écran principal, on attache un écouteur qui :
+        if (drawer.isDrawerOpen(GravityCompat.END)) { // Ferme le menu tiroir si celui-ci est ouvert
             drawer.closeDrawer(GravityCompat.END);
-        } else {
+        } else { // Fait apparaître une boîte d'alerte pour confirmer si l'on veut quitter l'application
             new AlertDialog.Builder(HomeActivity.this)
                     .setTitle("")
                     .setMessage("Quitter l'application ?")

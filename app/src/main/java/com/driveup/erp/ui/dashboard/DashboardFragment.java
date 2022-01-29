@@ -1,51 +1,48 @@
 package com.driveup.erp.ui.dashboard;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.driveup.erp.CommandDetailActivity;
-import com.driveup.erp.HomeActivity;
 import com.driveup.erp.R;
 import com.driveup.erp.adapter.CommandAdapter;
+import com.driveup.erp.adapter.ShortProductAdapter;
 import com.driveup.erp.model.Command;
+import com.driveup.erp.model.Product;
+import com.driveup.erp.model.ShortProduct;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DashboardFragment extends Fragment {
 
-    private Activity mActivity;
-    private DatabaseReference mDatabase;
-    private RecyclerView mRecycler;
+    private RecyclerView mRecyclerCommand;
+    private RecyclerView mRecyclerProduct;
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference1;
 
     private int numberOFCurrentCommand = 0;
     List<Command> commandList;
     CommandAdapter commandAdapter;
+
+    List<ShortProduct> shortProductList;
+    ShortProductAdapter shortProductAdapter;
 
     public static List<String> keys;
 
@@ -94,15 +91,17 @@ public class DashboardFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_dashboard, container, false);
-
-        Toast.makeText(getContext(), "" + HomeActivity.message, Toast.LENGTH_SHORT).show();
-
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("commands");
+        databaseReference1 = firebaseDatabase.getReference("products");
 
-        mRecycler = rootView.findViewById(R.id.recycler_view);
-        mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecycler.setHasFixedSize(true);
+        mRecyclerProduct = rootView.findViewById(R.id.recycler_view_product);
+        mRecyclerProduct.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mRecyclerProduct.setHasFixedSize(true);
+
+        mRecyclerCommand = rootView.findViewById(R.id.recycler_view_unpaid_command);
+        mRecyclerCommand.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerCommand.setHasFixedSize(true);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -116,7 +115,7 @@ public class DashboardFragment extends Fragment {
                 TextView nbrCommand = rootView.findViewById(R.id.nombre_commandes);
                 String finalCommand = "("+ numberOFCurrentCommand + ")";
 
-                Toast.makeText(getContext(), finalCommand, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), finalCommand, Toast.LENGTH_SHORT).show();
                 nbrCommand.setText(finalCommand);
             }
         }, 5000);
@@ -146,7 +145,43 @@ public class DashboardFragment extends Fragment {
                 Collections.reverse(commandList);
 
                 commandAdapter = new CommandAdapter(getContext(), commandList);
-                mRecycler.setAdapter(commandAdapter);
+                mRecyclerCommand.setAdapter(commandAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                shortProductList = new ArrayList<>();
+
+                HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
+
+                for (DataSnapshot productSnap: snapshot.getChildren()){
+                    //String key = productSnap.getRef().getKey();
+                    Product product = productSnap.getValue(Product.class);
+                    String key = product.getFormat_p();
+                    int value = product.getStock_p();
+
+                    if(!hashMap.containsKey(key)){
+                        hashMap.put(key, value);
+                    }else{
+                        hashMap.put(key, hashMap.get(key) + value);
+                    }
+
+                }
+
+                //List<Command> mList = new ArrayList<>();
+                //Collections.reverse(commandList);
+                for(Map.Entry map : hashMap.entrySet()){
+                    ShortProduct shortProduct = new ShortProduct(map.getKey().toString(), Integer.parseInt(map.getValue().toString()));
+                    shortProductList.add(shortProduct);
+                }
+
+                shortProductAdapter = new ShortProductAdapter(getContext(), shortProductList);
+                mRecyclerProduct.setAdapter(shortProductAdapter);
             }
 
             @Override

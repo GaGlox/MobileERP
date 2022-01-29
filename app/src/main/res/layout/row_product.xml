@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
@@ -9,13 +9,12 @@
     android:orientation="horizontal"
     android:background="@drawable/round_corner_background_accent">
 
-
-
     <LinearLayout
         android:id="@+id/box_0"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:layout_width="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,25 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Article"/>
-
-
-        <TextView
-            android:id="@+id/intitule_pr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Planche de bois"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"/>
-
-        <TextView
-            android:id="@+id/format_pr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description du produit"
-            android:textSize="12sp"
-            android:textColor="@android:color/white"/>
+            android:text="@string/product_title_label"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,45 +32,81 @@
             android:layout_marginTop="3dp"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/intitule_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_title"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/format_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/product_format"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
-                android:text="Quantité :"/>
+                android:text="@string/product_stock_label"/>
 
+            <TextView
+                android:id="@+id/stock_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="@string/product_stock"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="13sp"
+                android:text="@string/product_color_label"/>
 
             <TextView
                 android:id="@+id/color_pr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="12"
+                android:layout_marginStart="5dp"
+                android:text="@string/product_color"
                 android:textStyle="bold"
                 android:textSize="13sp"
                 android:textColor="@android:color/white"/>
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="10dp"
                 android:textSize="13sp"
-                android:text="Prix d\'achat : "/>
-
+                android:text="@string/product_unit_price_label"/>
 
             <TextView
                 android:id="@+id/pu_pr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12.000 Fc"
+                android:layout_marginStart="5dp"
+                android:text="@string/product_unit_price"
                 android:textStyle="bold"
                 android:textSize="13sp"
                 android:textColor="@android:color/white"/>
-
         </LinearLayout>
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/btn_edit"

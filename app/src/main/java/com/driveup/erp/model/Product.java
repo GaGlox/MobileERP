@@ -7,6 +7,8 @@ public class Product {
     private int pu_p;
     private String color_p;
 
+    public Product(){}
+
     public Product(String intitule_p, String format_p, String color_p, int stock_p, int pu_p) {
         this.intitule_p = intitule_p;
         this.format_p = format_p;

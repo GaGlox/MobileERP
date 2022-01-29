@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.provisioning.ProvisioningFragment">
+    tools:context=".ui.production.ProductionFragment">
 
     <LinearLayout
         android:id="@+id/head"
@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
 
         <TextView
             android:id="@+id/head_app_name"
@@ -35,7 +34,6 @@
             android:textColor="@color/colorPrimaryDark"/>
     </LinearLayout>
 
-
     <View
         android:id="@+id/divider"
         android:layout_width="10dp"
@@ -48,7 +46,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/furniture_section_title"
+        android:text="@string/product_section_title"
         android:textSize="24sp"
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toEndOf="@id/divider"
